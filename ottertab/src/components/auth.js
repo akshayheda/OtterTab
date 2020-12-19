@@ -10,7 +10,7 @@ const config = {
     discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
 }
 
-export const Auth = (props) => {
+export const Auth = ({setLoaded}) => {
     const calendar = 'primary';
     
     const [signedIn, setSignedIn] = useState(false);
@@ -19,6 +19,7 @@ export const Auth = (props) => {
         window.gapi.client.init(config).then(() => {
             window.gapi.auth2.getAuthInstance().isSignedIn.listen(setSignedIn);
             setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+            setLoaded(true);
         }).catch((e) => {
             console.log(e);
         });
