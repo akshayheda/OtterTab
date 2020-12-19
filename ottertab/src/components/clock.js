@@ -1,9 +1,12 @@
 // import statements
 import React, {useState, useEffect} from 'react';
+import { Text } from './text.js';
 
 // options to be passed into the date object
 // TODO: make options settable
 const TIME_OPTIONS = {'hour12':true, hour:'numeric', minute:'numeric'};
+
+
 
 
 // components can be defined as functions using arrow notation
@@ -24,6 +27,6 @@ export const Clock = () => {
     });
 
     // a functional component returns back what it wants to be displayed.
-    return <h1>{time}</h1>
+    return <Text>{time}</Text>
 }
 

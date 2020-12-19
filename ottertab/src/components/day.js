@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { Text } from './text.js';
+
 
 const DATE_OPTIONS = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
@@ -15,6 +17,6 @@ export const Day = () => {
             setDay(getCurrentDay());
           }, 60*1000);
     });
-    return <h1>{day}</h1>
+    return <Text>{day}</Text>
 }
 
