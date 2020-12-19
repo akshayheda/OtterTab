@@ -17,6 +17,6 @@ export const Day = () => {
             setDay(getCurrentDay());
           }, 60*1000);
     });
-    return <Text>{day}</Text>
+    return <Text level={2}>{day}</Text>
 }
 
