@@ -22,9 +22,15 @@ export const Calendar = (loaded) => {
     if (!loaded) { return <></> }
 
     const listUpcomingEvents = async (maxResults)  => {
+        let start = new Date();
+        start.setHours(0,0,0,0);
+        let end = new Date();
+        end.setHours(23,59,59,999);
+
         window.gapi.client.calendar.events.list({
             'calendarId': 'primary',
-            'timeMin': (new Date()).toISOString(),
+            'timeMin': start.toISOString(),
+            'timeMax': end.toISOString(),
             'showDeleted': false,
             'singleEvents': true,
             'maxResults': 10,
