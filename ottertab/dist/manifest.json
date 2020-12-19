@@ -1,0 +1,19 @@
+
+{
+  "manifest_version": 2,
+  "version": "2",
+
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
