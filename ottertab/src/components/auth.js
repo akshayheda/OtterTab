@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { gapi, loadAuth2 } from 'gapi-script';
 import { Button } from 'antd';
 import { ReactComponent as Logo } from '../assets/images/google-logo.svg';
+import { GoogleOutlined } from '@ant-design/icons';
 
 const config = {
     clientId: process.env.REACT_APP_GAPI_CLIENT_ID,
@@ -43,7 +44,7 @@ export const Auth = ({setLoaded}) => {
     }, []);
 
     return <React.Fragment>
-        <Button type="primary" icon={<Logo width="1.3rem" height="1.3rem" style={{padding: ''}}></Logo>} onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}}>
+        <Button type="primary" icon={<GoogleOutlined />} onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}}>
             {signedIn? "Sign Out": "Sign In"}
         </Button>
     </React.Fragment>
