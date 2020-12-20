@@ -22,6 +22,7 @@ export const Notes = (loaded) => {
         onClose={() => setVisible(false)}
         visible={visible}
         key='left'
+        width='400'
     >
         <Space direction='vertical' size='middle' style={{width: '100%'}}>
             <AddNote userId = {userId}/>

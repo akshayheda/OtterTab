@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import firebase from "./firebase.js";
-import { List } from 'antd';
+import { List, Button } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 
 function useLists(userId) {
   const [lists, setLists] = useState([]);
@@ -25,17 +26,19 @@ function useLists(userId) {
   return lists;
 }
 
-export const NoteLists = ({userId}) => {
-  const lists = useLists(userId);
-
-  const handleOnDelete = id => {
+const handleOnDelete = (itemId, userId) => {
     firebase
       .firestore()
-      .collection(userId)
+      .collection("users")
+      .doc(userId)
       .collection("notes")
-      .doc(id)
+      .doc(itemId)
       .delete();
   };
+
+
+export const NoteLists = ({userId}) => {
+  const lists = useLists(userId);
 
   console.log(lists)
 
@@ -43,7 +46,7 @@ export const NoteLists = ({userId}) => {
         dataSource={lists}
         size='small'
         renderItem = { list => (
-            <List.Item>
+            <List.Item key={list.id} actions= {[<Button size='small' shape='circle' danger={true} icon={<CloseOutlined />} onClick={() => handleOnDelete(list.id, userId)}></Button>]}>
                 <List.Item.Meta title={<b>{list.title}</b>} description={list.body}/>
             </List.Item>
         )
