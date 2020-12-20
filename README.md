@@ -78,7 +78,7 @@ The backend consists of a Firebase server to store notes and mood history for ea
 
 ```
 ├── users
-│   ├── user1
+│       ├── user1
 │	│	├── mood
 │	│	│	├── 12-18-2020
 │	│	│	│	├── positive
@@ -96,7 +96,7 @@ The backend consists of a Firebase server to store notes and mood history for ea
 │	│	│	├── note3id
 │	│	│	│	├── title
 │	│	│	│	├── body
-│   ├── user2
+│       ├── user2
 │	│	├── mood
 │	│	│	├── 12-19-2020
 │	│	│	│	├── neutral
