@@ -5,6 +5,8 @@ import { Layout, Row, Col } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { Brand } from './components/brand.js';
 import { Notes } from './components/notes.js';
+import { MoodTracker } from './components/moodtracker.js';
+import { MoodDisplayer } from './components/moodDisplayer.js';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -24,10 +26,14 @@ function App() {
         <Row>
           <Notes/>
         </Row>
+        <Row>
+            <MoodDisplayer loaded={gapiLoaded}/>
+        </Row>
       </div>
       <Content>
         <Center loaded={gapiLoaded}/>
       </Content>
+      <MoodTracker/>
       <Footer style = {{ backgroundColor: 'rgba(255, 255, 255, 0.0)', position: 'absolute', bottom: 0, width: 100 + '%' }}>
       </Footer>
     </Layout>
