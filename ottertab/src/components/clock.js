@@ -27,6 +27,6 @@ export const Clock = () => {
     });
 
     // a functional component returns back what it wants to be displayed.
-    return <Text>{time}</Text>
+    return <Text style={{fontSize: 5 + 'rem', marginBottom: 0}}>{time}</Text>
 }
 
