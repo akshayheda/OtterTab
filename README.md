@@ -58,7 +58,7 @@ Here's a brief rundown of the list of features in OtterTab:
 
     Your mood for each day is tabulated in a database displayed in a calendar so you can view your weekly and monthly trends.
 
-    ![mood_tracker](/ottertab/doc/mood_tracker.png)
+    ![mood-tracker](/ottertab/doc/mood-tracker.png)
 
 ## Architecture
 
