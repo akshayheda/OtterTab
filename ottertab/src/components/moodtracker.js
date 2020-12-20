@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Row, Col, Space } from 'antd';
 import firebase from "./firebase.js";
+import { SmileOutlined, MehOutlined, FrownOutlined } from '@ant-design/icons';
 
 const DATE_OPTIONS = {year: 'numeric', month: 'numeric', day: 'numeric'};
 
@@ -24,9 +25,25 @@ export const MoodTracker = (loaded) => {
         });
     }
 
-    return <Space direction='horizontal'>
-            <Button shape='circle' type='primary' onClick={() => sendMood(userId, 'happy')}>Happy</Button>
-            <Button shape='circle' type='primary' onClick={() => sendMood(userId, 'neutral')}>Neutral</Button>
-            <Button shape='circle' type='primary' danger={true} onClick={() => sendMood(userId, 'sad')}>Sad</Button>
+    return <div>
+        <h3>How are you feeling today?</h3>
+        <Space direction='horizontal'>
+            <Button shape='circle' size='large' type='primary' 
+                icon={<SmileOutlined />} 
+                onClick={() => sendMood(userId, 'happy')} 
+                style={{backgroundColor: '#0CC078', borderColor: '#0CC078'}}>
+            </Button>
+            <Button shape='circle' size='large' type='primary' 
+                icon={<MehOutlined />} 
+                onClick={() => sendMood(userId, 'neutral')} 
+                style={{backgroundColor: '#ffc600', borderColor: '#ffc600'}}>
+            </Button>
+            <Button shape='circle' size='large' type='primary' 
+                icon={<FrownOutlined />}
+                onClick={() => sendMood(userId, 'sad')}
+                style={{backgroundColor: '#DC143C', borderColor: '#DC143C'}}>
+            </Button>
         </Space>
+    </div>
+        
 }
