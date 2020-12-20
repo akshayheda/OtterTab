@@ -25,10 +25,10 @@ function App() {
         <Row style={{marginBottom: 0.6 + 'rem'}}>
           <Brand/>
         </Row>
-        <Row>
+        <Row style={{marginBottom: 0.6 + 'rem'}}>
           <Notes isSignedIn={signedIn} loaded={gapiLoaded}/>
         </Row>
-        <Row>
+        <Row style={{marginBottom: 0.6 + 'rem'}}>
             <MoodDisplayer isSignedIn={signedIn} loaded={gapiLoaded}/>
         </Row>
       </div>
