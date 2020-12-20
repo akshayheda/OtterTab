@@ -3,12 +3,25 @@ import { Card } from 'antd';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+const TIME_OPTIONS = {'hour12':true, hour:'numeric', minute:'numeric'};
+
 export const CalendarEvent = (event) => {
+
+    let startDate = new Date(event.event.start.dateTime);
+    let endDate = new Date(event.event.end.dateTime);
+
+    let firstLine = "";
+    let secondLine = "";
+
+    // The event starts and ends on the same day
+    if (startDate.toDateString() === endDate.toDateString()) {
+        firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS) + endDate.toLocaleString('en-US', TIME_OPTIONS);
+    }
 
     console.log(event);
     return <Card title={event.event.summary} style={{ margin: 0.5 + 'rem'}} size="small" >
-        <p>{event.event.start.dateTime}</p>
-        <p>{event.event.end.dateTime}</p>
+        <p>{}</p>
+        <p>{}</p>
         <p>{event.event.description}</p>
     </Card>
 
