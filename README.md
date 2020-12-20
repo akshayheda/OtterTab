@@ -48,7 +48,7 @@ Here's a brief rundown of the list of features in OtterTab:
 
     Write down notes and to-do items. These are synchronized to your Google account and will display upon login at any computer.
 
-![notes](/ottertab/doc/notes.png)
+<img src="/ottertab/doc/notes.png" width="500">
 
 - Mood Tracker
 
@@ -62,13 +62,15 @@ Here's a brief rundown of the list of features in OtterTab:
 
 ## Architecture
 
-![firebase](/ottertab/doc/firebase.png)
+<div>
+<img src="/ottertab/doc/firebase.png" height="200" style="float: left">
 
-![react](/ottertab/doc/react.png)
+<img src="/ottertab/doc/react.png" height="150" style="float: left">
 
-![calendar](/ottertab/doc/calendar.png)
+<img src="/ottertab/doc/calendar.png" height="150" style="float: left">
 
-![cloud](/ottertab/doc/cloud.png)
+<img src="/ottertab/doc/cloud.png" height="200" style="float: left">
+</div>
 
 OtterTab is written in React and hosted on GCP App Engine.
 
