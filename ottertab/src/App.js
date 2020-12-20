@@ -5,6 +5,8 @@ import { Calendar } from './components/calendar.js';
 import { Layout, Row, Col } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { Notes } from './components/notes.js';
+import { MoodTracker } from './components/moodtracker.js';
+import { MoodDisplayer } from './components/moodDisplayer.js';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -19,6 +21,8 @@ function App() {
           <Notes/>
           <Center/>
           <Calendar loaded={gapiLoaded}/>
+          <MoodTracker/>
+          <MoodDisplayer/>
         </Content>
         <Footer style = {{ position: 'absolute', bottom: 0, width: 100 + '%' }}>
           <div style={{float: 'left'}}>
