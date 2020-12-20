@@ -11,7 +11,7 @@ export const Center = (loaded) => {
         <Row justify='center' style={{}}>
             <Clock/> 
         </Row>
-        <Row justify='center' style={{marginBottom: 2 + 'rem'}}>
+        <Row justify='center' style={{marginBottom: 1 + 'rem'}}>
             <Day/>
         </Row>
         <Row justify='center' style={{marginBottom: 2 + 'rem'}} span={12}>

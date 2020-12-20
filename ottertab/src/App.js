@@ -19,7 +19,7 @@ function App() {
       <div style={{position: 'absolute', top: 0, right: 0, margin: 1 + 'rem'}}>
         <Auth justify='start' setLoaded={status => setLoaded(status)}/>
       </div>
-      <div style={{position: 'absolute', top: 0, left: 0, margin: 1 + 'rem'}}>
+      <div style={{zIndex: 10, position: 'absolute', top: 0, left: 0, margin: 1 + 'rem'}}>
         <Row style={{marginBottom: 0.6 + 'rem'}}>
           <Brand/>
         </Row>
@@ -33,8 +33,8 @@ function App() {
       <Content>
         <Center loaded={gapiLoaded}/>
       </Content>
-      <MoodTracker/>
       <Footer style = {{ backgroundColor: 'rgba(255, 255, 255, 0.0)', position: 'absolute', bottom: 0, width: 100 + '%' }}>
+        <MoodTracker/>
       </Footer>
     </Layout>
   );
