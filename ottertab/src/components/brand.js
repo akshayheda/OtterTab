@@ -8,6 +8,6 @@ export const Brand = () => {
             onClick={() => window.open('#', '_blank')} >
             <img src={otterface} alt="Logo" width='25' height='25'/>
         </Button>
-        <h2 style={{display: 'inline-block', marginBottom: 0, marginLeft: 0.6 + 'rem'}}>Otter Tab</h2>
+        <h2 style={{display: 'inline-block', marginBottom: 0, marginLeft: 0.6 + 'rem'}}>OtterTab</h2>
     </span>
 }
