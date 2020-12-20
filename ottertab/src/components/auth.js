@@ -15,11 +15,13 @@ export const Auth = ({setLoaded}) => {
     const calendar = 'primary';
     
     const [signedIn, setSignedIn] = useState(false);
+    const [loaded, setLocalLoaded] = useState(false);
 
     const initClient = () => {
         window.gapi.client.init(config).then(() => {
             window.gapi.auth2.getAuthInstance().isSignedIn.listen(setSignedIn);
             setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+            setLocalLoaded(true);
             setLoaded(true);
         }).catch((e) => {
             console.log(e);
@@ -43,10 +45,22 @@ export const Auth = ({setLoaded}) => {
         initAuth();
     }, []);
 
+    if (loaded) {
+        return <React.Fragment>
+            <Button type="primary" icon={<GoogleOutlined />} 
+                onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}}>
+                {signedIn? "Sign Out": "Sign In"}
+            </Button>
+        </React.Fragment>
+    }
+
     return <React.Fragment>
-        <Button type="primary" icon={<GoogleOutlined />} onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}}>
-            {signedIn? "Sign Out": "Sign In"}
+        <Button type="primary" icon={<GoogleOutlined />} 
+            onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}} loading>
+            Loading...
         </Button>
     </React.Fragment>
+
+
 
 }
