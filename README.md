@@ -63,13 +63,13 @@ Here's a brief rundown of the list of features in OtterTab:
 ## Architecture
 
 <div>
-<img src="/ottertab/doc/firebase.png" height="200" style="float: left">
+<img src="/ottertab/doc/firebase.png" height="175" style="float: left">
 
-<img src="/ottertab/doc/react.png" height="150" style="float: left">
+<img src="/ottertab/doc/react.png" height="125" style="float: left">
 
-<img src="/ottertab/doc/calendar.png" height="150" style="float: left">
+<img src="/ottertab/doc/calendar.png" height="125" style="float: left">
 
-<img src="/ottertab/doc/cloud.png" height="200" style="float: left">
+<img src="/ottertab/doc/cloud.png" height="175" style="float: left">
 </div>
 
 OtterTab is written in React and hosted on GCP App Engine.
