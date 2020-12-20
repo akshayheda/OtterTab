@@ -11,23 +11,29 @@ const SHORT_DATE_OPTIONS = {weekday: 'short', month: 'short', day: 'numeric'};
 
 export const CalendarEvent = (event) => {
 
-    let startDate = new Date(event.event.start.dateTime);
-    let endDate = new Date(event.event.end.dateTime);
-
     let firstLine = "";
     let secondLine = "";
 
-    // The event starts and ends on the same day
-    if (startDate.toDateString() === endDate.toDateString()) {
-        firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase() + ' — ' + endDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase();
-        secondLine = startDate.toLocaleString('en-US', DATE_OPTIONS);
+    if ('date' in event.event.start) {
+        let startDate = new Date(event.event.start.date);
+        firstLine = startDate.toLocaleString('en-US', DATE_OPTIONS);
     } else {
-        firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + startDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
-        secondLine = '— ' + endDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + endDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
+        let startDate = new Date(event.event.start.dateTime);
+        let endDate = new Date(event.event.end.dateTime);
+
+        // The event starts and ends on the same day
+        if (startDate.toDateString() === endDate.toDateString()) {
+            firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase() + ' — ' + endDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase();
+            secondLine = startDate.toLocaleString('en-US', DATE_OPTIONS);
+        } else {
+            firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + startDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
+            secondLine = '— ' + endDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + endDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
+        }
     }
 
     console.log(event);
-    return <Card hoverable size="large" style={{ margin: 0.5 + 'rem', height: 15 + 'rem', overflowY: 'scroll' }} >
+    return <Card hoverable size="large" style={{ margin: 0.5 + 'rem', height: 15 + 'rem', overflowY: 'scroll' }} 
+        onClick={() => window.open(event.event.htmlLink, '_blank')}>
         <h3>
             {event.event.summary} 
         </h3>
@@ -37,7 +43,7 @@ export const CalendarEvent = (event) => {
             {secondLine}
         </p>
         <Divider style={{marginTop: 1 + 'rem', marginBottom: 1 + 'rem'}}/>
-        <p style={{wordWrap: 'break-word'}}>
+        <p style={{wordWrap: 'break-word', marginBottom: 0}}>
             <div dangerouslySetInnerHTML={{ __html: event.event.description }} />
         </p>
     </Card>
@@ -97,7 +103,7 @@ export const Calendar = (loaded) => {
 
     if (events.length === 0) { return <></> }
 
-    return <Carousel responsive={responsive}>
+    return <Carousel responsive={responsive} renderButtonGroupOutside={true}>
         {events.map(element => {
             return <CalendarEvent event={element}/>
         })}
