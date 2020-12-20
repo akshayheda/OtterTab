@@ -19,7 +19,7 @@ function useMoods(userId) {
   
           setMood(moods);
         });
-    }, []);
+    }, [userId]);
   
     return moods;
   }
@@ -36,7 +36,7 @@ export const MoodCalendar = ({userId}) => {
     function onFullRender(date){
         // query moods to find mood associated with that date
         let ref_id = date.format('MM-DD-YYYY');
-        let mood = moods.find(objs => objs.id == (ref_id));
+        let mood = moods.find(objs => objs.id === (ref_id));
         let style;
         // map moods to colors
         if (mood) {

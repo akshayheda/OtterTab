@@ -9,7 +9,7 @@ export const AddNote = ({userId}) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  // firebase push function. Accesses path users/notes/{note}
+// firebase push function. Accesses path users/notes/{note}
   const addNote = () => {
     let timestamp = Date.now();
     firebase

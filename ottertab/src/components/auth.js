@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { gapi, loadAuth2 } from 'gapi-script';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 
@@ -11,7 +12,8 @@ const config = {
 }
 
 // Component to handle sign in/sign out and load google api. Also manages logged-in state for global app.
-export const Auth = ({setLoaded, setIsSignedIn}) => {    
+export const Auth = ({setLoaded, setIsSignedIn}) => {
+    
     // internal state to use for signing in and out
     const [signedIn, setSignedIn] = useState(false);
     const [loaded, setLocalLoaded] = useState(false);
@@ -19,11 +21,7 @@ export const Auth = ({setLoaded, setIsSignedIn}) => {
     // hack for loading in google api
     const initClient = () => {
         window.gapi.client.init(config).then(() => {
-            // callback to update state on signed in
-            window.gapi.auth2.getAuthInstance().isSignedIn.listen(
-                (val) => { setSignedIn(val); setIsSignedIn(val); sessionStorage.setItem('signedIn', JSON.stringify(val));
-                });
-                // pull session storage to get logged in status on refresh
+            window.gapi.auth2.getAuthInstance().isSignedIn.listen((val) => { setSignedIn(val); setIsSignedIn(val); sessionStorage.setItem('signedIn', JSON.stringify(val));});
                 let stored_val = JSON.parse(sessionStorage.getItem('signedIn'));
                 console.log("Session Storage: " +  stored_val);
                 if (stored_val == true) {
@@ -31,14 +29,15 @@ export const Auth = ({setLoaded, setIsSignedIn}) => {
                 } else {
                     setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
                 }
-                // update component state and use props to update app state
                 setLocalLoaded(true);
                 setIsSignedIn(stored_val);
                 setLoaded(true);
+                console.log("AFTER REFRESH VAL: " + signedIn);
         }).catch((e) => {
             console.log(e);
         });
     }
+
     // function to login. State variables are updated by the listener.
     const handleAuthClick = () => {
         window.gapi.auth2.getAuthInstance().signIn();

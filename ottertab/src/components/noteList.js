@@ -6,7 +6,6 @@ import { CloseOutlined } from '@ant-design/icons';
 // helper function to get notes for a user
 function useLists(userId) {
   const [lists, setLists] = useState([]);
-  console.log("NOTES:" + userId);
   useEffect(() => {
     firebase
       .firestore()
@@ -21,7 +20,7 @@ function useLists(userId) {
         // sort rever chronological
         setLists(lists.sort((first, second) => second.timestamp - first.timestamp));
       });
-  }, []);
+  }, [userId]);
 
   return lists;
 }
