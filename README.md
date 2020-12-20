@@ -12,15 +12,15 @@ OtterTab is a landing page for Chrome and Firefox. It provides quick and easy in
 
 Using OtterTab is as simple as clicking a [link](https://ottertest2.wm.r.appspot.com/)! However, in order to access most of the features, you will need to sign in with your Google account. Click the Sign In button in the top right corner, and enter your credentials. We recommend setting OtterTab as your landing page for convenience.
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled.png)
+![signin](/ottertab/doc/signin.png)
 
 Voila! You're in!
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%201.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%201.png)
+![fullscreen](/ottertab/doc/fullscreen.png)
 
 The search bar is dead center, and the notes menu and mood tracker can be found in the side menu:
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%202.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%202.png)
+![menu](/ottertab/doc/menu.png)
 
 ## Features List
 
@@ -30,45 +30,47 @@ Here's a brief rundown of the list of features in OtterTab:
 
     The displayed time is synchronized to your browser time.
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%203.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%203.png)
+![clock](/ottertab/doc/clock.png)
 
 - Search Bar
 
     Type in a URL or use Google Search (just like Google Chrome!).
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%204.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%204.png)
+![search](/ottertab/doc/search.png)
 
 - Upcoming Events
 
     A list of your upcoming events are pulled from the account's google calendars. The events are displayed chronologically with clickable links like Zoom meetings if applicable. Clicking on the event redirects you to your Google Calendar event.
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%205.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%205.png)
+![events](/ottertab/doc/events.png)
 
 - Notes
 
     Write down notes and to-do items. These are synchronized to your Google account and will display upon login at any computer.
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%206.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%206.png)
+<img src="/ottertab/doc/notes.png" width="500">
 
 - Mood Tracker
 
     Record your mood once every day: positive, neutral, or negative.
 
-    ![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%207.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%207.png)
+    ![emotions](/ottertab/doc/emotions.png)
 
     Your mood for each day is tabulated in a database displayed in a calendar so you can view your weekly and monthly trends.
 
-    ![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%208.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%208.png)
+    ![mood_tracker](/ottertab/doc/mood_tracker.png)
 
 ## Architecture
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%209.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%209.png)
+<div>
+<img src="/ottertab/doc/firebase.png" height="200" style="float: left">
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%2010.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%2010.png)
+<img src="/ottertab/doc/react.png" height="150" style="float: left">
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%2011.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%2011.png)
+<img src="/ottertab/doc/calendar.png" height="150" style="float: left">
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%2012.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/Untitled%2012.png)
+<img src="/ottertab/doc/cloud.png" height="200" style="float: left">
+</div>
 
 OtterTab is written in React and hosted on GCP App Engine.
 
@@ -76,37 +78,37 @@ The backend consists of a Firebase server to store notes and mood history for ea
 
 ```
 ├── users
-│   ├── user1
-│		│		├── mood
-│		│		│		├── 12-18-2020
-│		│		│		│		├── positive
-│		│		│		├── 12-19-2020
-│		│		│		│		├── positive
-│		│		│		├── 12-20-2020
-│		│		│		│		├── neutral
-│		│		├── notes
-│		│		│		├── note1id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│		│		│		├── note2id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│		│		│		├── note3id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│   ├── user2
-│		│		├── mood
-│		│		│		├── 12-19-2020
-│		│		│		│		├── neutral
-│		│		│		├── 12-20-2020
-│		│		│		│		├── negative
-│		│		├── notes
-│		│		│		├── note1id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│		│		│		├── note2id
-│		│		│		│		├── title
-│		│		│		│		├── body
+│       ├── user1
+│	│	├── mood
+│	│	│	├── 12-18-2020
+│	│	│	│	├── positive
+│	│	│	├── 12-19-2020
+│	│	│	│	├── positive
+│	│	│	├── 12-20-2020
+│	│	│	│	├── neutral
+│	│	├── notes
+│	│	│	├── note1id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│	│	│	├── note2id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│	│	│	├── note3id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│       ├── user2
+│	│	├── mood
+│	│	│	├── 12-19-2020
+│	│	│	│	├── neutral
+│	│	│	├── 12-20-2020
+│	│	│	│	├── negative
+│	│	├── notes
+│	│	│	├── note1id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│	│	│	├── note2id
+│	│	│	│	├── title
+│	│	│	│	├── body
 ```
 
 ## Documentation
@@ -168,4 +170,4 @@ return <Layout className="App" style = {{height: 100 + 'vh'}}>
 
 Mockup of Intended Design (done with photoshop during early stages of development):
 
-![OtterTab%205c8d5291db4e4c219560fabf6aa8c626/OtterTab.png](OtterTab%205c8d5291db4e4c219560fabf6aa8c626/OtterTab.png)
+![mockup](/ottertab/doc/mockup.png)
