@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Row, Col, Space, Calendar, Modal } from 'antd';
-import firebase from "./firebase.js";
+import React, { useState } from 'react';
+import { Button, Modal } from 'antd';
 import { MoodCalendar } from './moodCalendar.js';
 import { SmileOutlined } from '@ant-design/icons';
 
+// Component that provides modal that pops out mood data
 export const MoodDisplayer = ({isSignedIn, loaded}) => {
+    // state variables to track whether to show modal and tooltip text
     const [calendarVisible, setVisible] = useState(false);
-  
     const [hover, setHover] = useState(false);
 
+    // if user not signed in, return nothing
     let userId;
     console.log(isSignedIn, loaded)
     if (!isSignedIn || !loaded) {
         return <></>
     } else {
-        console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
         userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     }
 
-    console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get())
-
-    
+    // return back modal, with hovering showing a tooltip
     return (
         <>
           <Button type="primary" shape='circle' size='large' onClick={() => setVisible(true)} icon={<SmileOutlined />}

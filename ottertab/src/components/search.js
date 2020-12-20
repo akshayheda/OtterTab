@@ -1,19 +1,20 @@
-import React, {state, useState} from 'react';
-import styled from 'styled-components';
+import React, {useState} from 'react';
 import { isURL } from 'validator';
 import { Input } from "antd";
 
+// prepend constants
 const HTTP = "https://";
 const WWW = "www.";
 const SEARCH_URL = "http://www.google.com/search?q=";
-
 const URL_OPTIONS = {"require_protocol": true};
 const { Search } = Input;
 
+// search bar used in middle of page
 export const SearchBar = () => {
+    // current input as state
     const [text, setInputText] = useState("");
 
-    
+    // handles query upon submission
     const handleSubmit = () => {
         // check to see if it has http
         if (isURL(text, URL_OPTIONS)) {
@@ -33,7 +34,7 @@ export const SearchBar = () => {
             window.location.href = SEARCH_URL + text;
         }
     }
-
+    // return searchbar that is linked to function above
     return <Search
                 style={{width: '80%'}}
                 onSearch={handleSubmit}

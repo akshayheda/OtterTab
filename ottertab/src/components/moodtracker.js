@@ -1,19 +1,21 @@
 import React from 'react';
-import { Button, Row, Col, Space } from 'antd';
+import { Button, Space } from 'antd';
 import firebase from "./firebase.js";
 import { SmileOutlined, MehOutlined, FrownOutlined } from '@ant-design/icons';
 
 const DATE_OPTIONS = {year: 'numeric', month: 'numeric', day: 'numeric'};
 
+// button array to input in mood to firebase
 export const MoodTracker = ({isSignedIn, loaded}) => {
+    // check if user is signed in, if not return nothing
     let userId;
     if (!isSignedIn || !loaded) {
         return <></>
     } else {
-        console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
         userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     }
-    console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get())
+
+    // setter function to make database call
     const sendMood = (userId, mood) => {
         let date = new Date().toLocaleString('en-US', DATE_OPTIONS).replace(/\//g, '-');
         let timestamp = Date.now();
@@ -28,6 +30,7 @@ export const MoodTracker = ({isSignedIn, loaded}) => {
         });
     }
 
+    // return 3 buttons for the moods supported
     return <div>
         <h3>How are you feeling today?</h3>
         <Space direction='horizontal'>

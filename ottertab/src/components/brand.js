@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'antd';
 import otterface from '../assets/images/otter_face.png';
 
+// Logo and title component. Easter egg of opening another ottertab
 export const Brand = () => {
     return <span>
         <Button type="primary" shape='circle' size='large' logo={otterface} 

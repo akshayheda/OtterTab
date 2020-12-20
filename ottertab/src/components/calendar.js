@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Divider, Col } from 'antd';
+import React, { useState } from 'react';
+import { Card, Divider } from 'antd';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const { Meta } = Card;
-
+// configs to be used in date objects to get back string formats
 const TIME_OPTIONS = {'hour12':true, hour:'numeric', minute:'numeric'};
 const DATE_OPTIONS = {weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
 const SHORT_DATE_OPTIONS = {weekday: 'short', month: 'short', day: 'numeric'};
 
+
+// Component that provides a card for the carousel. 
 export const CalendarEvent = (event) => {
 
     let firstLine = "";
     let secondLine = "";
 
+    // all day event
     if ('date' in event.event.start) {
         let startDate = new Date(event.event.start.date);
         firstLine = startDate.toLocaleString('en-US', DATE_OPTIONS);
@@ -25,13 +27,13 @@ export const CalendarEvent = (event) => {
         if (startDate.toDateString() === endDate.toDateString()) {
             firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase() + ' — ' + endDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase();
             secondLine = startDate.toLocaleString('en-US', DATE_OPTIONS);
+        // multi-day event
         } else {
             firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + startDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
             secondLine = '— ' + endDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + endDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
         }
     }
-
-    console.log(event);
+    // returns back a card with all information about the event. Sets content to innerhtml to load links.
     return <Card hoverable size="large" style={{ margin: 0.5 + 'rem', height: 15 + 'rem', overflowY: 'scroll' }} 
         onClick={() => window.open(event.event.htmlLink, '_blank')}>
         <h3>
@@ -50,21 +52,26 @@ export const CalendarEvent = (event) => {
 
 }
 
+
+// Component to pull data from google calendar and provide carousel of events.
 export const Calendar = ({loaded, isSignedIn}) => {
 
+    // state of the events loaded and variable to prevent unnecessary reloads
     const [events, setEvents] = useState([]);
     const [eventsLoaded, setEventsLoaded] = useState(false);
-    console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
 
-
+    // if user isnt signed in or api not ready, do not show calendar component
     if (!loaded || !isSignedIn) { return <></> }
 
+    // api call function
     const listUpcomingEvents = async (maxResults)  => {
+        // create dates that start and end on current day
         let start = new Date();
         start.setHours(0,0,0,0);
         let end = new Date();
         end.setHours(23,59,59,999);
 
+        // api call on primary calendar limited to current day (max 10 events)
         window.gapi.client.calendar.events.list({
             'calendarId': 'primary',
             'timeMin': start.toISOString(),
@@ -74,20 +81,19 @@ export const Calendar = ({loaded, isSignedIn}) => {
             'maxResults': 10,
             'orderBy': 'startTime'
         }).then((response) => {
-            console.log(response.result.items);
             setEvents(response.result.items);
         }).catch((e) => {
             console.log(e);
         });
     }
-
+    // if not already loaded, load events with api call
     if (!eventsLoaded && loaded && window.gapi.auth2 != null) {
         if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
             setEventsLoaded(true);
             listUpcomingEvents();
         }
     }
-
+    // breakpoints for num items
     const responsive = {
         desktop: {
           breakpoint: { max: 5000, min: 800 },
@@ -103,8 +109,10 @@ export const Calendar = ({loaded, isSignedIn}) => {
         }
     };
 
+    // 0 item case
     if (events.length === 0) { return <></> }
 
+    // return the carousel component.
     return <Carousel responsive={responsive} renderButtonGroupOutside={true}>
         {events.map(element => {
             return <CalendarEvent event={element}/>

@@ -21,11 +21,7 @@ export const Auth = ({setLoaded, setIsSignedIn}) => {
         window.gapi.client.init(config).then(() => {
             // callback to update state on signed in
             window.gapi.auth2.getAuthInstance().isSignedIn.listen(
-                (val) => { 
-                    setSignedIn(val); 
-                    setIsSignedIn(val); 
-                    // use session storage to store logged in status 
-                    sessionStorage.setItem('signedIn', JSON.stringify(val));
+                (val) => { setSignedIn(val); setIsSignedIn(val); sessionStorage.setItem('signedIn', JSON.stringify(val));
                 });
                 // pull session storage to get logged in status on refresh
                 let stored_val = JSON.parse(sessionStorage.getItem('signedIn'));

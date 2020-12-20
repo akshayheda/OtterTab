@@ -6,8 +6,8 @@ import { Calendar } from './calendar.js';
 
 import {Row, Col} from 'antd';
 
+// component to organize other components in center of page
 export const Center = ({loaded, isSignedIn}) => {
-    console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
     return <Col justify='center' style={{position: 'relative', top: 5 + 'rem', margin: 'auto', padding: 1 + 'rem', width: 100 + '%', maxWidth: 50 + 'rem'}}>
         <Row justify='center' style={{}}>
             <Clock/> 

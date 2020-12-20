@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import firebase from "./firebase.js";
 import { List, Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
+// helper function to get notes for a user
 function useLists(userId) {
   const [lists, setLists] = useState([]);
   console.log("NOTES:" + userId);
@@ -18,7 +18,7 @@ function useLists(userId) {
           id: doc.id,
           ...doc.data()
         }));
-
+        // sort rever chronological
         setLists(lists.sort((first, second) => second.timestamp - first.timestamp));
       });
   }, []);
@@ -26,6 +26,7 @@ function useLists(userId) {
   return lists;
 }
 
+// delete function to remove from database
 const handleOnDelete = (itemId, userId) => {
     firebase
       .firestore()
@@ -36,11 +37,9 @@ const handleOnDelete = (itemId, userId) => {
       .delete();
   };
 
-
+// list component to show and delete notes
 export const NoteLists = ({userId}) => {
   const lists = useLists(userId);
-
-  console.log(lists)
 
   return <List
         dataSource={lists}

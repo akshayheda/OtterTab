@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-import { Button, Drawer, Divider, Space } from 'antd';
+import { Button, Drawer, Space } from 'antd';
 import { AddNote } from './addNote.js';
 import { NoteLists } from './noteList.js';
 import { FormOutlined } from '@ant-design/icons';
 
+// top level notes component that provides button and sidebar
 export const Notes = ({isSignedIn, loaded}) => {
+    // state on when to show sidebar and tooltip
     const [visible, setVisible] = useState(false);
-
     const [hover, setHover] = useState(false);
+
+    // check if user is signed in, else return nothing
     let userId;
     if (!isSignedIn || !loaded) {
         return <></>
     } else {
-        console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
         userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     }
-    console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get())
    
-
+    // return a button with tooltip on hover, that links to a drawer.
     return <>
         <Button type="primary" shape='circle' size='large' icon={<FormOutlined />} 
             onClick={() => setVisible(true)} 
