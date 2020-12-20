@@ -35,7 +35,7 @@ export const SearchBar = () => {
     }
 
     return <Search
-                style={{width: '50%'}}
+                style={{width: '80%'}}
                 onSearch={handleSubmit}
                 size='large'
                 type = 'text'

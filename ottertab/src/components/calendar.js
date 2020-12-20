@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from 'antd';
+import { Card, Divider, Col } from 'antd';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+const { Meta } = Card;
+
 const TIME_OPTIONS = {'hour12':true, hour:'numeric', minute:'numeric'};
+const DATE_OPTIONS = {weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
+const SHORT_DATE_OPTIONS = {weekday: 'short', month: 'short', day: 'numeric'};
 
 export const CalendarEvent = (event) => {
 
@@ -15,14 +19,27 @@ export const CalendarEvent = (event) => {
 
     // The event starts and ends on the same day
     if (startDate.toDateString() === endDate.toDateString()) {
-        firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS) + endDate.toLocaleString('en-US', TIME_OPTIONS);
+        firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase() + ' — ' + endDate.toLocaleString('en-US', TIME_OPTIONS).toLowerCase();
+        secondLine = startDate.toLocaleString('en-US', DATE_OPTIONS);
+    } else {
+        firstLine = startDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + startDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
+        secondLine = '— ' + endDate.toLocaleString('en-US', TIME_OPTIONS) + ' ' + endDate.toLocaleString('en-US', SHORT_DATE_OPTIONS);
     }
 
     console.log(event);
-    return <Card title={event.event.summary} style={{ margin: 0.5 + 'rem'}} size="small" >
-        <p>{}</p>
-        <p>{}</p>
-        <p>{event.event.description}</p>
+    return <Card hoverable size="large" style={{ margin: 0.5 + 'rem', height: 15 + 'rem', overflowY: 'scroll' }} >
+        <h3>
+            {event.event.summary} 
+        </h3>
+        <p style={{color: 'slategrey'}}>
+            {firstLine}
+            <br />
+            {secondLine}
+        </p>
+        <Divider style={{marginTop: 1 + 'rem', marginBottom: 1 + 'rem'}}/>
+        <p style={{wordWrap: 'break-word'}}>
+            <div dangerouslySetInnerHTML={{ __html: event.event.description }} />
+        </p>
     </Card>
 
 }
@@ -64,21 +81,16 @@ export const Calendar = (loaded) => {
     }
 
     const responsive = {
-        superLargeDesktop: {
-          // the naming can be any, depends on you.
-          breakpoint: { max: 4000, min: 3000 },
-          items: 8
-        },
         desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 5
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
+          breakpoint: { max: 5000, min: 800 },
           items: 3
         },
+        tablet: {
+          breakpoint: { max: 800, min: 500 },
+          items: 2
+        },
         mobile: {
-          breakpoint: { max: 464, min: 0 },
+          breakpoint: { max: 500, min: 0 },
           items: 1
         }
     };

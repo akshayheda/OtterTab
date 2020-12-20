@@ -1,7 +1,6 @@
 import './App.less';
 import { Center } from './components/core.js';
 import { Auth } from './components/auth.js';
-import { Calendar } from './components/calendar.js';
 import { Layout, Row, Col } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { Notes } from './components/notes.js';
@@ -15,6 +14,7 @@ function App() {
   const [gapiLoaded, setLoaded] = useState(false);
 
   return (
+<<<<<<< HEAD
     <div className="App">
         <Header></Header>
         <Content style = {{ height: 100 + '%' }}>
@@ -30,6 +30,19 @@ function App() {
           </div>
         </Footer>
     </div>
+=======
+    <Layout className="App" style = {{height: 100 + 'vh'}}>
+      <div style={{position: 'absolute', top: 0, right: 0, margin: 1 + 'rem'}}>
+        <Auth justify='start' setLoaded={status => setLoaded(status)}/>
+      </div>
+      <Notes/>
+      <Content>
+        <Center loaded={gapiLoaded}/>
+      </Content>
+      <Footer style = {{ backgroundColor: 'rgba(255, 255, 255, 0.0)', position: 'absolute', bottom: 0, width: 100 + '%' }}>
+      </Footer>
+    </Layout>
+>>>>>>> 43f9a288875ba6817974a75a3d8051c5f20889ca
   );
 }
 
