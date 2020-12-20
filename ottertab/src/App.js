@@ -4,6 +4,7 @@ import { Auth } from './components/auth.js';
 import { Calendar } from './components/calendar.js';
 import { Layout, Row, Col } from 'antd';
 import React, { useState, useEffect } from 'react';
+import { Notes } from './components/notes.js';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
         <Header></Header>
         <Content style = {{ height: 100 + '%' }}>
+          <Notes/>
           <Center/>
           <Calendar loaded={gapiLoaded}/>
         </Content>
