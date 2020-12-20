@@ -4,16 +4,19 @@ import { AddNote } from './addNote.js';
 import { NoteLists } from './noteList.js';
 import { FormOutlined } from '@ant-design/icons';
 
-export const Notes = (loaded) => {
+export const Notes = ({isSignedIn, loaded}) => {
     const [visible, setVisible] = useState(false);
 
     const [hover, setHover] = useState(false);
-
-    if (!loaded || window.gapi.auth2 == null || window.gapi.auth2.getAuthInstance().currentUser == null) {
+    let userId;
+    if (!isSignedIn || !loaded) {
         return <></>
+    } else {
+        console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
+        userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     }
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get())
-    let userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
+   
 
     return <>
         <Button type="primary" shape='circle' size='large' icon={<FormOutlined />} 

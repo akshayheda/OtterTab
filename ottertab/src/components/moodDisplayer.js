@@ -4,15 +4,18 @@ import firebase from "./firebase.js";
 import { MoodCalendar } from './moodCalendar.js';
 
 
-export const MoodDisplayer = (loaded) => {
+export const MoodDisplayer = ({isSignedIn, loaded}) => {
     const [calendarVisible, setVisible] = useState(false);
-
-    if (!loaded || window.gapi.auth2 == null || window.gapi.auth2.getAuthInstance().currentUser == null) {
+    let userId;
+    console.log(isSignedIn, loaded)
+    if (!isSignedIn || !loaded) {
         return <></>
+    } else {
+        console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
+        userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     }
 
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get())
-    let userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
 
     
     return (
