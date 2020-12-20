@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import firebase from "./firebase.js";
 import { Button, Input, Space } from 'antd';
 
 const { TextArea } = Input;
 
+// Text input component that makes calls to firebase
 export const AddNote = ({userId}) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
+  // firebase push function. Accesses path users/notes/{note}
   const addNote = () => {
     let timestamp = Date.now();
     firebase
