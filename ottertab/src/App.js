@@ -27,7 +27,7 @@ function App() {
           <Notes/>
         </Row>
         <Row>
-            <MoodDisplayer loaded={gapiLoaded}/>
+            <MoodDisplayer/>
         </Row>
       </div>
       <Content>

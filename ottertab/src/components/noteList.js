@@ -6,7 +6,7 @@ import { CloseOutlined } from '@ant-design/icons';
 
 function useLists(userId) {
   const [lists, setLists] = useState([]);
-
+  console.log("NOTES:" + userId);
   useEffect(() => {
     firebase
       .firestore()
