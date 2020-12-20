@@ -79,36 +79,36 @@ The backend consists of a Firebase server to store notes and mood history for ea
 ```
 ├── users
 │   ├── user1
-│		│		├── mood
-│		│		│		├── 12-18-2020
-│		│		│		│		├── positive
-│		│		│		├── 12-19-2020
-│		│		│		│		├── positive
-│		│		│		├── 12-20-2020
-│		│		│		│		├── neutral
-│		│		├── notes
-│		│		│		├── note1id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│		│		│		├── note2id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│		│		│		├── note3id
-│		│		│		│		├── title
-│		│		│		│		├── body
+│	│	├── mood
+│	│	│	├── 12-18-2020
+│	│	│	│	├── positive
+│	│	│	├── 12-19-2020
+│	│	│	│	├── positive
+│	│	│	├── 12-20-2020
+│	│	│	│	├── neutral
+│	│	├── notes
+│	│	│	├── note1id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│	│	│	├── note2id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│	│	│	├── note3id
+│	│	│	│	├── title
+│	│	│	│	├── body
 │   ├── user2
-│		│		├── mood
-│		│		│		├── 12-19-2020
-│		│		│		│		├── neutral
-│		│		│		├── 12-20-2020
-│		│		│		│		├── negative
-│		│		├── notes
-│		│		│		├── note1id
-│		│		│		│		├── title
-│		│		│		│		├── body
-│		│		│		├── note2id
-│		│		│		│		├── title
-│		│		│		│		├── body
+│	│	├── mood
+│	│	│	├── 12-19-2020
+│	│	│	│	├── neutral
+│	│	│	├── 12-20-2020
+│	│	│	│	├── negative
+│	│	├── notes
+│	│	│	├── note1id
+│	│	│	│	├── title
+│	│	│	│	├── body
+│	│	│	├── note2id
+│	│	│	│	├── title
+│	│	│	│	├── body
 ```
 
 ## Documentation
