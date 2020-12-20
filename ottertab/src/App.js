@@ -15,23 +15,6 @@ function App() {
   const [gapiLoaded, setLoaded] = useState(false);
 
   return (
-<<<<<<< HEAD
-    <div className="App">
-        <Header></Header>
-        <Content style = {{ height: 100 + '%' }}>
-          <Notes/>
-          <Center/>
-          <Calendar loaded={gapiLoaded}/>
-          <MoodTracker/>
-          <MoodDisplayer/>
-        </Content>
-        <Footer style = {{ position: 'absolute', bottom: 0, width: 100 + '%' }}>
-          <div style={{float: 'left'}}>
-            <Auth justify='start' setLoaded={status => setLoaded(status)}/>
-          </div>
-        </Footer>
-    </div>
-=======
     <Layout className="App" style = {{height: 100 + 'vh'}}>
       <div style={{position: 'absolute', top: 0, right: 0, margin: 1 + 'rem'}}>
         <Auth justify='start' setLoaded={status => setLoaded(status)}/>
@@ -43,14 +26,17 @@ function App() {
         <Row>
           <Notes/>
         </Row>
+        <Row>
+            <MoodDisplayer loaded={gapiLoaded}/>
+        </Row>
       </div>
       <Content>
         <Center loaded={gapiLoaded}/>
       </Content>
+      <MoodTracker/>
       <Footer style = {{ backgroundColor: 'rgba(255, 255, 255, 0.0)', position: 'absolute', bottom: 0, width: 100 + '%' }}>
       </Footer>
     </Layout>
->>>>>>> 43f9a288875ba6817974a75a3d8051c5f20889ca
   );
 }
 
