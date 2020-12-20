@@ -12,13 +12,13 @@ function App() {
 
   return (
     <Layout className="App" style = {{height: 100 + 'vh'}}>
+      <div style={{position: 'absolute', top: 0, right: 0, margin: 1 + 'rem'}}>
+        <Auth justify='start' setLoaded={status => setLoaded(status)}/>
+      </div>
       <Content>
         <Center loaded={gapiLoaded}/>
       </Content>
       <Footer style = {{ backgroundColor: 'rgba(255, 255, 255, 0.0)', position: 'absolute', bottom: 0, width: 100 + '%' }}>
-        <div style={{float: 'left'}}>
-          <Auth justify='start' setLoaded={status => setLoaded(status)}/>
-        </div>
       </Footer>
     </Layout>
   );

@@ -43,8 +43,7 @@ export const Auth = ({setLoaded}) => {
     }, []);
 
     return <React.Fragment>
-        <Button type="primary" onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}}>
-            {/* <Logo width="1.3em" height="1.3em"></Logo> */}
+        <Button type="primary" icon={<Logo width="1.3rem" height="1.3rem" style={{padding: ''}}></Logo>} onClick={(e) => {signedIn? handleSignoutClick(): handleAuthClick()}}>
             {signedIn? "Sign Out": "Sign In"}
         </Button>
     </React.Fragment>
