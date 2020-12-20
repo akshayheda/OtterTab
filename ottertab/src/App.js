@@ -13,28 +13,30 @@ const { Header, Footer, Sider, Content } = Layout;
 function App() {
 
   const [gapiLoaded, setLoaded] = useState(false);
+  const [signedIn, setIsSignedIn] = useState(false);
+  console.log(gapiLoaded, signedIn);
 
   return (
     <Layout className="App" style = {{height: 100 + 'vh'}}>
       <div style={{position: 'absolute', top: 0, right: 0, margin: 1 + 'rem'}}>
-        <Auth justify='start' setLoaded={status => setLoaded(status)}/>
+        <Auth justify='start' setLoaded={setLoaded} setIsSignedIn={setIsSignedIn}/>
       </div>
       <div style={{zIndex: 10, position: 'absolute', top: 0, left: 0, margin: 1 + 'rem'}}>
         <Row style={{marginBottom: 0.6 + 'rem'}}>
           <Brand/>
         </Row>
         <Row>
-          <Notes/>
+          <Notes isSignedIn={signedIn} loaded={gapiLoaded}/>
         </Row>
         <Row>
-          <MoodDisplayer/>
+            <MoodDisplayer isSignedIn={signedIn} loaded={gapiLoaded}/>
         </Row>
       </div>
       <Content>
-        <Center loaded={gapiLoaded}/>
+        <Center loaded={gapiLoaded} isSignedIn={signedIn}/>
       </Content>
       <Footer style = {{ backgroundColor: 'rgba(255, 255, 255, 0.0)', position: 'absolute', bottom: 0, width: 100 + '%' }}>
-        <MoodTracker/>
+        <MoodTracker isSignedIn={signedIn} loaded={gapiLoaded}/>
       </Footer>
     </Layout>
   );

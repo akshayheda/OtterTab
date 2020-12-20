@@ -5,12 +5,15 @@ import { SmileOutlined, MehOutlined, FrownOutlined } from '@ant-design/icons';
 
 const DATE_OPTIONS = {year: 'numeric', month: 'numeric', day: 'numeric'};
 
-export const MoodTracker = (loaded) => {
-    if (!loaded || window.gapi.auth2 == null || window.gapi.auth2.getAuthInstance().currentUser == null) {
+export const MoodTracker = ({isSignedIn, loaded}) => {
+    let userId;
+    if (!isSignedIn || !loaded) {
         return <></>
+    } else {
+        console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
+        userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     }
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get())
-    let userId = window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getId();
     const sendMood = (userId, mood) => {
         let date = new Date().toLocaleString('en-US', DATE_OPTIONS).replace(/\//g, '-');
         let timestamp = Date.now();

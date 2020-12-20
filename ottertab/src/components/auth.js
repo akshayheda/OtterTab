@@ -11,7 +11,7 @@ const config = {
     discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
 }
 
-export const Auth = ({setLoaded}) => {
+export const Auth = ({setLoaded, setIsSignedIn}) => {
     const calendar = 'primary';
     
     const [signedIn, setSignedIn] = useState(false);
@@ -19,10 +19,18 @@ export const Auth = ({setLoaded}) => {
 
     const initClient = () => {
         window.gapi.client.init(config).then(() => {
-            window.gapi.auth2.getAuthInstance().isSignedIn.listen(setSignedIn);
-            setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
-            setLocalLoaded(true);
-            setLoaded(true);
+            window.gapi.auth2.getAuthInstance().isSignedIn.listen((val) => { setSignedIn(val); setIsSignedIn(val); sessionStorage.setItem('signedIn', JSON.stringify(val));});
+                let stored_val = JSON.parse(sessionStorage.getItem('signedIn'));
+                console.log("Session Storage: " +  stored_val);
+                if (stored_val == true) {
+                    setSignedIn(true)
+                } else {
+                    setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+                }
+                setLocalLoaded(true);
+                setIsSignedIn(stored_val);
+                setLoaded(true);
+                console.log("AFTER REFRESH VAL: " + signedIn);
         }).catch((e) => {
             console.log(e);
         });
@@ -30,12 +38,10 @@ export const Auth = ({setLoaded}) => {
 
     const handleAuthClick = () => {
         window.gapi.auth2.getAuthInstance().signIn();
-        setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     }
 
     const handleSignoutClick = () => {
         window.gapi.auth2.getAuthInstance().signOut();
-        setSignedIn(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     }
 
     useEffect(() => {

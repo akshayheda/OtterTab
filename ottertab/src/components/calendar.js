@@ -50,12 +50,14 @@ export const CalendarEvent = (event) => {
 
 }
 
-export const Calendar = (loaded) => {
+export const Calendar = ({loaded, isSignedIn}) => {
 
     const [events, setEvents] = useState([]);
     const [eventsLoaded, setEventsLoaded] = useState(false);
+    console.log("signed in: " + isSignedIn + '\tloaded: ' + loaded);
 
-    if (!loaded) { return <></> }
+
+    if (!loaded || !isSignedIn) { return <></> }
 
     const listUpcomingEvents = async (maxResults)  => {
         let start = new Date();
