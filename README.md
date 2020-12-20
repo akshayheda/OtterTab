@@ -2,6 +2,8 @@
 
 > *"You don't need another tab; you need an OtterTab!"*
 
+View the documentation in Notion [here](https://www.notion.so/OtterTab-94463da5c66c48a0b6144a49c6f99029).
+
 As college students in 2020, we face two challenges every day: fulfilling our seemingly endless responsibilities and taking care of our mental health. We built OtterTab to do both.
 
 OtterTab is a landing page for Chrome and Firefox. It provides quick and easy insight into your daily schedule in the form of your calendar and notepad. OtterTab also supports a mood tracker, where you can record your mood once a day. This is a proven [positive psychology technique](https://serenitymentalhealthcenters.com/3-reasons-to-track-your-mood/) for improving mental health.
