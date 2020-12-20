@@ -27,7 +27,7 @@ function App() {
           <Notes/>
         </Row>
         <Row>
-            <MoodDisplayer/>
+          <MoodDisplayer/>
         </Row>
       </div>
       <Content>
